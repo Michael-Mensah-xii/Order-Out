@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Order Out</string>
+    <string name="confirm_button">Confirm order</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="text_add_icon">Increase</string>
+    <string name="Ingredients">Ingredients:</string>
+    <string name="temp_item_string">Ash Adidas</string>
+    <string name="temp_price">GHS 200.00</string>
+    <string name="get_started">Get started</string>
+    <string name="name1">Rice Pudding</string>
+    <string name="description1">"\Rice, Water, Milk : Rice pudding is a dish made from rice mixed with water or milk and other ingredients such as cinnamon, vanilla and raisins. Variants are used for either desserts or dinners. When used as a dessert, it is commonly combined with a sweetener such as sugar. "</string>
+    <string name="name2">Sausage Pizza</string>
+    <string name="name3">Burgers and Chips</string>
+    <string name="name4">Rice and Chicken</string>
+    <string name="name5">Sandwich and Fries</string>
+    <string name="name6">Curry Rice</string>
+    <string name="description6">Rice or kiribath, vegetable or meat curry, spices (chili peppers, cardamom, cumin, coriander)</string>
+    <string name="description5">Bread,potatoes,onions,tomatoes,mustard and mayonnaise,lettuce,salt</string>
+    <string name="description4">Rice,Chicken,onions,peppers,tomatoes,chicken spices and herbs,vegetable oil/butter</string>
+    <string name="description3">1 ¼kg lean beef mince1 onion, finely chopped,140g breadcrumb,100g mature cheddar, grated,small bunch parsley, chopped,1 tbsp Worcestershire sauce,1 egg, lightly beaten with a fork,1 tsp mild chilli powder,2 ½kg bag of potato, cut into chunky chips,3 tbsp plain flour,10 tsp olive or sunflower oil,burger buns, lettuce, sliced red onion, tomatoes, gherkins, and sauces or relishes, to serve</string>
+    <string name="description2">2 cup all purpose flour,100 gm processed cheese,100 ml tomato ketchup,spicy Italian sausage,1 tomato,1/2 capsicum (green pepper),2 onion,1 teaspoon oregano.</string>
+    <string name="price_rice_pudding">"GHS 30.00 "</string>
+    <string name="price_sausage_pizza">"GHS 70.00 "</string>
+    <string name="price_burgers_chips">"GHS 30.00 "</string>
+    <string name="price_rice_chicken">"GHS 15.00 "</string>
+    <string name="price_sandwich_fries">"GHS 55.00 "</string>
+    <string name="price_curry_rice">"GHS 40.00 "</string>
+</resources>

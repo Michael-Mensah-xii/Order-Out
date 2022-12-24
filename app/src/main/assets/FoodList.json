@@ -1,0 +1,37 @@
+[
+  {
+    "id":1,
+    "name": "Rice Pudding",
+    "description":"Rice, Water, Milk : Rice pudding is a dish made from rice mixed with water or milk and other ingredients such as cinnamon, vanilla and raisins. Variants are used for either desserts or dinners. When used as a dessert, it is commonly combined with a sweetener such as sugar."
+  },
+
+  {
+    "id":2,
+    "name": "Sausage Pizza",
+    "description":"2 cup all purpose flour,100 gm processed cheese,100 ml tomato ketchup,spicy Italian sausage,1 tomato,1/2 capsicum (green pepper),2 onion,1 teaspoon oregano."
+  },
+
+  {
+    "id":3,
+    "name": "Burgers and Chips",
+    "description":"1 ¼kg lean beef mince1 onion, finely chopped,140g breadcrumb,100g mature cheddar, grated,small bunch parsley, chopped,1 tbsp Worcestershire sauce,1 egg, lightly beaten with a fork,1 tsp mild chilli powder,2 ½kg bag of potato, cut into chunky chips,3 tbsp plain flour,10 tsp olive or sunflower oil,burger buns, lettuce, sliced red onion, tomatoes, gherkins, and sauces or relishes, to serve"
+  },
+
+  {
+    "id":4,
+    "name": "Rice and Chicken",
+    "description":"Rice,Chicken,onions,peppers,tomatoes,chicken spices and herbs,vegetable oil/butter"
+  },
+
+  {
+    "id":5,
+    "name": "Sandwich and Fries",
+    "description":"Bread,potatoes,onions,tomatoes,mustard and mayonnaise,lettuce,salt"
+  },
+
+  {
+    "id":6,
+    "name": "Curry Rice",
+    "description":"Rice or kiribath, vegetable or meat curry, spices (chili peppers, cardamom, cumin, coriander)"
+  }
+]
