@@ -26,7 +26,7 @@ fun BottomNavigationBar(navController: NavController) {
         NavigationItem.Favourites,
         NavigationItem.Notification,
     )
-
+    val selectedItem = items.first()
     BottomNavigation(
         backgroundColor = MaterialTheme.colors.background,
         contentColor = Color.Black,
@@ -38,7 +38,7 @@ fun BottomNavigationBar(navController: NavController) {
                 selectedContentColor = Green,
                 unselectedContentColor = Green.copy(0.5f),
                 alwaysShowLabel = false,
-                selected = false,
+                selected = item == selectedItem,
                 onClick = {
 
                     if (item.icon == R.drawable.home_icon) {
