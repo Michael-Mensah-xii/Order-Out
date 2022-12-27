@@ -7,8 +7,13 @@ Food ordering application based on figma ui
 Install Android Studio on any compatible device
 
 # Figma Reference
-Screenshots of figma reference
-![image](https://user-images.githubusercontent.com/95852329/209734383-0acd7bbf-4cb7-4bd2-a340-d566dfcde101.png)![image](https://user-images.githubusercontent.com/95852329/209734642-0418ef89-cf3a-4350-a7bc-b9f5c30b535a.png)![image](https://user-images.githubusercontent.com/95852329/209734708-d2f7e2e1-15f7-41f9-a043-b94a94a8001e.png)
+Screenshots of figma reference: https://www.figma.com/file/H5OZ8nhu6ApMItCidCK8B3/FoodApp?node-id=0%3A1&t=UHeC26yvasW4asYJ-0
+
+<img width="400" alt="fig ref 3" src="https://user-images.githubusercontent.com/95852329/209736141-07612709-3de6-4a6c-806b-4a361ea62707.png">
+
+<img width="400" alt="fig ref 2" src="https://user-images.githubusercontent.com/95852329/209736152-ee22b1f9-d8f8-4c9c-b2ea-85e889e72d1f.png">
+
+<img width="400" alt="fig ref 1" src="https://user-images.githubusercontent.com/95852329/209736155-758947f5-d15e-4839-adbe-8fe5163e95fb.png">
 
 
 # Screenshots
