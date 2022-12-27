@@ -12,4 +12,7 @@ Screenshots of figma reference
 
 
 # Screenshots
-Screenshots of app <img width="308" alt="min screenshot 3" src="https://user-images.githubusercontent.com/95852329/209735557-bcf3a465-d8ca-4215-bf86-2c07df6d36c3.png"><img width="315" alt="min image 2" src="https://user-images.githubusercontent.com/95852329/209735560-24a685f5-6e72-43e1-ae71-ef40bc0c9d1b.png"<img width="347" alt="min image 1" src="https://user-images.githubusercontent.com/95852329/209735564-b004cede-051b-480f-b43e-87ac4ec347f0.png">
+Screenshots of app 
+<img width="308" alt="min screenshot 3" src="https://user-images.githubusercontent.com/95852329/209735557-bcf3a465-d8ca-4215-bf82c07df6d36c3.png">
+<img width="315" alt="min image 2" src="https://user-images.githubusercontent.com/95852329/209735560-24a685f5-6e72-43e1-ae71-ef40bc0c9d1b.png"
+<img width="347" alt="min image 1" src="https://user-images.githubusercontent.com/95852329/209735564-b004cede-051b-480f-b43e-87ac4ec347f0.png">
