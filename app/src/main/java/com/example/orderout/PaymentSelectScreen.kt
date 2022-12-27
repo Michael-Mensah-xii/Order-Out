@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,6 +23,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.orderout.ui.theme.Green
 import com.example.orderout.ui.theme.GreenMINTalpha
 import com.example.orderout.ui.theme.paleGreen
@@ -30,14 +33,18 @@ import com.example.orderout.ui.theme.paleGreen
 @Composable
 fun PaymentSelect(
     @DrawableRes drawable: Int,
+    onClick: (() -> Unit)?,
 ) {
-    Box(modifier = Modifier
-        .fillMaxWidth()
-        .heightIn(101.dp)
-        .padding(horizontal = 16.dp)
-        .clip(RoundedCornerShape(8.dp))
-        .background(paleGreen)
-        .clickable { }
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(101.dp)
+            .padding(horizontal = 16.dp)
+            .clip(RoundedCornerShape(8.dp))
+            .background(paleGreen)
+            .clickable {
+                onClick?.invoke()
+            },
     ) {
         Row(
             modifier = Modifier
@@ -62,20 +69,19 @@ fun PaymentSelect(
 
 @Composable
 fun PaymentList(
-    modifier: Modifier = Modifier,
+    navController: NavController,
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
-        ChoosePayment()
+        ChoosePayment(navController)
         Text(
             text = "Choose your payment method",
             modifier = Modifier
                 .padding(horizontal = 16.dp),
             fontSize = 16.sp,
-
-            )
+        )
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            modifier = modifier
+            modifier = Modifier
                 .weight(50f)
                 .heightIn(303.dp)
                 .padding(vertical = 16.dp),
@@ -83,11 +89,22 @@ fun PaymentList(
                 items(paymentdata) { item ->
                     PaymentSelect(
                         drawable = item.drawable,
+                        onClick = {
+                            if (item.drawable == R.drawable.visa2) {
+                                navController.navigate("visa_select") {
+                                    popUpTo("visa_select") { inclusive = true }
+                                }
+                            } else {
+                                null
+                            }
+                        }
                     )
                 }
-
             }
         )
+
+        Spacer(modifier = Modifier.heightIn(48.dp))
+
     }
 
 }
@@ -104,10 +121,10 @@ val paymentdata = listOf(
 
 
 @Composable
-fun ChoosePayment() {
+fun ChoosePayment(navController: NavController) {
     Box(modifier = Modifier
         .fillMaxWidth()
-        .heightIn(188.dp)
+        .heightIn(32.dp)
     ) {
         Row(
             modifier = Modifier
@@ -123,33 +140,42 @@ fun ChoosePayment() {
                     .clip(RoundedCornerShape(8.dp))
                     .background(paleGreen)
                     .padding(4.dp)
-                    .clickable {  },
+                    .clickable { },
                 contentAlignment = Alignment.Center
             ) {
-                Icon(
-                    modifier =
-                    Modifier
-                        .size(20.dp, 20.dp),
-                    painter = painterResource(id = R.drawable.backpressed),
-                    contentDescription = null,
-                    tint = Green
-                )
+                IconButton(onClick = {
+                    navController.navigate("cart") {
+                        popUpTo("cart") { inclusive = true }
+                    }
+                }) {
+                    Icon(
+                        modifier =
+                        Modifier
+                            .size(20.dp, 20.dp),
+                        painter = painterResource(id = R.drawable.backpressed),
+                        contentDescription = null,
+                        tint = Green
+                    )
+                }
+
             }
         }
 
-        Row(modifier = Modifier.fillMaxWidth(),
+        Row(modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
             horizontalArrangement = Arrangement.Center
         ) {
             Text(text = "Choose Payment",
                 style = TextStyle(fontSize = 24.sp, lineHeight = 14.sp),
-                modifier = Modifier.padding(vertical = 56.dp)
+                modifier = Modifier.padding(vertical = 62.dp)
             )
         }
 
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 114.dp)
+                .padding(top = 100.dp)
                 .padding(horizontal = 16.dp)
                 .heightIn(45.dp)
                 .background(GreenMINTalpha),
@@ -181,18 +207,22 @@ fun ChoosePayment() {
 @Preview(showBackground = true)
 @Composable
 fun ChoosePaymentPreview() {
-    ChoosePayment()
+    val navController = rememberNavController()
+    ChoosePayment(navController)
 }
 
 @Preview(showBackground = true)
 @Composable
 fun PaymentListPreview() {
-    PaymentList()
+    val navController = rememberNavController()
+    PaymentList(navController)
 }
 
 
 @Preview(showBackground = true)
 @Composable
 fun PaymentSelectPreview() {
-    PaymentSelect(drawable = R.drawable.visa2)
+    PaymentSelect(R.drawable.visa2) {
+        // Perform some action when the PaymentSelect component is clicked
+    }
 }

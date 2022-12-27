@@ -17,12 +17,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.orderout.ui.theme.Green
 import com.example.orderout.ui.theme.GreenMINTalpha
 import com.example.orderout.ui.theme.paleGreen
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun VisaPaymentDetails() {
+fun VisaPaymentDetails(navController: NavController) {
     val textState = rememberSaveable { mutableStateOf("") }
 
     Column(
@@ -49,14 +53,20 @@ fun VisaPaymentDetails() {
                         .clickable { },
                     contentAlignment = Alignment.Center
                 ) {
-                    Icon(
-                        modifier =
-                        Modifier
-                            .size(20.dp, 20.dp),
-                        painter = painterResource(id = R.drawable.backpressed),
-                        contentDescription = null,
-                        tint = Green
-                    )
+                    IconButton(onClick = {
+                        navController.navigate("pay_select") {
+                            popUpTo("pay_select") { inclusive = true }
+                        }
+                    }) {
+                        Icon(
+                            modifier =
+                            Modifier
+                                .size(20.dp, 20.dp),
+                            painter = painterResource(id = R.drawable.backpressed),
+                            contentDescription = null,
+                            tint = Green
+                        )
+                    }
                 }
             }
             Spacer(modifier = Modifier.heightIn(8.dp))
@@ -84,20 +94,20 @@ fun VisaPaymentDetails() {
             textAlign = TextAlign.Start,
         )
         OutlinedTextField(
-                value = textState.value,
-                onValueChange = { textState.value = it },
-                modifier = Modifier
-                  .border(2.dp, color = GreenMINTalpha, shape = RoundedCornerShape(8.dp))
-                    .fillMaxWidth()
-                    .heightIn(min = 60.dp)
-                    .clip(
-                        RoundedCornerShape(8.dp)
-                    )
-                    .background(
-                        Color(212, 235, 211, 255)
-                    ),
-
+            value = textState.value,
+            onValueChange = { textState.value = it },
+            modifier = Modifier
+                .border(2.dp, color = GreenMINTalpha, shape = RoundedCornerShape(8.dp))
+                .fillMaxWidth()
+                .heightIn(min = 60.dp)
+                .clip(
+                    RoundedCornerShape(8.dp)
                 )
+                .background(
+                    Color(212, 235, 211, 255)
+                ),
+
+            )
 
         Spacer(modifier = Modifier.heightIn(32.dp))
 
@@ -156,7 +166,7 @@ fun VisaPaymentDetails() {
                     .widthIn(min = 137.dp)
                     .heightIn(min = 60.dp)
                     .clip(
-                        RoundedCornerShape(4.dp)
+                        RoundedCornerShape(8.dp)
                     )
                     .background(
                         Color(212, 235, 211, 255)
@@ -196,6 +206,7 @@ fun VisaPaymentDetails() {
         {
             Button(
                 modifier = Modifier
+                    .padding(bottom = 60.dp)
                     .heightIn(58.dp)
                     .fillMaxWidth(),
                 shape = RoundedCornerShape(4.dp),
@@ -210,28 +221,28 @@ fun VisaPaymentDetails() {
             }
         }
 
-        Spacer(modifier = Modifier.heightIn(32.dp))
 
     }
 }
-
 
 
 @Composable
-fun VisaPaymentScreen(modifier: Modifier = Modifier) {
-    Column(modifier
+fun VisaPaymentScreen(navController: NavHostController) {
+    Column(modifier = Modifier
         .fillMaxSize()
         .verticalScroll(rememberScrollState())
     ) {
-        VisaPaymentDetails()
+        VisaPaymentDetails(navController)
     }
 
 }
+
 
 @Preview(showBackground = true)
 @Composable
 fun VisaPaymentPreview() {
-    VisaPaymentDetails()
+    val navController = rememberNavController()
+    VisaPaymentDetails(navController)
 
 }
 
@@ -239,6 +250,7 @@ fun VisaPaymentPreview() {
 @Preview(showBackground = true)
 @Composable
 fun VisaPaymentScreenPreview() {
-    VisaPaymentScreen()
+    val navController = rememberNavController()
+    VisaPaymentScreen(navController)
 }
 

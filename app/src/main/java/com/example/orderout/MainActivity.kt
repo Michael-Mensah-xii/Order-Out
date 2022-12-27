@@ -18,8 +18,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.orderout.ui.theme.CartScreen
 import com.example.orderout.ui.theme.DestinationViewModel
 import com.example.orderout.ui.theme.OrderOutTheme
+import com.example.orderout.view.BottomNavigationBar
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalFoundationApi::class)
@@ -60,21 +62,26 @@ fun LazyVerticalGridActivityScreen(destinationViewModel: DestinationViewModel = 
     Scaffold(
 
         topBar = {
-                 TopBar {
-                 }
+            TopBar(navController)
         },
-        content = {
-            NavHost(navController = navController, startDestination = "home") {
-                composable("home") { HomeScreen(navController, destinationViewModel) }
-                composable("details/{listId}") { backStackEntry ->
-                    backStackEntry.arguments?.getString("listId")?.let { FoodItemCheck(it, navController, destinationViewModel) }
-                }
-            }
+        bottomBar = {
+            BottomNavigationBar(navController)
         }
-    )
+
+    ) {
+        NavHost(navController = navController, startDestination = "home") {
+            composable("home") { HomeScreen(navController, destinationViewModel) }
+
+            composable("details/{listId}") { backStackEntry ->
+                backStackEntry.arguments?.getString("listId")
+                    ?.let { FoodItemCheck(it, navController, destinationViewModel) }
+            }
+            composable("cart") { CartScreen(navController) }
+            composable("pay_select") { PaymentList(navController) }
+            composable("visa_select") { VisaPaymentScreen(navController) }
+        }
+    }
 }
-
-
 
 
 /*

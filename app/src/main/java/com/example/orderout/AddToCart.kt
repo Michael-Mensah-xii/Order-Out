@@ -243,7 +243,9 @@ fun FoodItemCheck(
                         overflow = TextOverflow.Clip
                     )
 
+                    Spacer(modifier = Modifier.heightIn(48.dp))
                 }
+
 
                 Column(modifier = Modifier
                     .padding(top = 285.dp)
@@ -266,6 +268,8 @@ fun FoodItemCheck(
                     }
 
                 }
+
+                Spacer(modifier = Modifier.heightIn(32.dp))
             }
 
 

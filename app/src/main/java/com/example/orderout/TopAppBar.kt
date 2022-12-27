@@ -16,11 +16,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.orderout.ui.theme.Green
 
 
 @Composable
-fun TopBar(onBackClick: () -> Unit) {
+fun TopBar(
+           navController: NavController,
+
+           ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -28,7 +33,7 @@ fun TopBar(onBackClick: () -> Unit) {
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        IconButton(onClick = { onBackClick() }) {
+        IconButton(onClick = {  }) {
             Icon(
                 modifier = Modifier.size(32.dp, 32.dp),
                 imageVector = Icons.Default.Menu,
@@ -37,7 +42,9 @@ fun TopBar(onBackClick: () -> Unit) {
             )
         }
 
-        IconButton(onClick = { }) {
+        IconButton(onClick = { navController.navigate("cart"){
+            popUpTo("cart") { inclusive = true }
+        } }) {
             Icon(
                 imageVector = Icons.Outlined.ShoppingCart,
                 contentDescription = "cart",
@@ -49,48 +56,12 @@ fun TopBar(onBackClick: () -> Unit) {
 
 }
 
-/*@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun ScaffoldWithTopBar() {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(text = "")
-                },
-                navigationIcon = {
-                    IconButton(onClick = {}) {
-                        Icon(Icons.Filled.ArrowBack, "backIcon")
-                    }
-                },
-
-            )
-        }, content = {
-            Column(
-                modifier = Modifier
-                    .padding(it)
-                    .fillMaxSize()
-                    .background(Color(0xff8d6e63)),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = "Content of the page",
-                    fontSize = 30.sp,
-                    color = Color.White
-                )
-            }
-
-        })
-}*/
-
 
 @Preview
 @Composable
 fun SimplePreview() {
-    TopBar() {
-
-    }
+    val navController = rememberNavController()
+    TopBar(navController)
 }
 @Preview
 @Composable

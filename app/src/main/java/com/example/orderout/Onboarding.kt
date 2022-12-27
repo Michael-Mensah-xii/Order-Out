@@ -30,7 +30,7 @@ fun OnboardingUI(
 ) {
     val pagerState = rememberPagerState()
 
-    Column() {
+    Column(Modifier.fillMaxWidth()) {
 
         /*Text(text = "Skip",modifier = Modifier
             .fillMaxWidth()
@@ -45,26 +45,26 @@ fun OnboardingUI(
             verticalAlignment = Alignment.Top,
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(1f)) { page ->
+                .weight(10f)) { page ->
             PageUI(page = onboardPages[page])
         }
-
         HorizontalPagerIndicator(
             pagerState = pagerState,
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .padding(16.dp)
-                .padding(bottom = 0.dp),
+                .weight(1f),
             activeColor = Green,
             indicatorWidth = 10.dp,
             indicatorHeight = 10.dp
         )
 
         AnimatedVisibility(visible = pagerState.currentPage == 2) {
-          Button(shape = RoundedCornerShape(4.dp),
+            Button(shape = RoundedCornerShape(4.dp),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(58.dp)
+                    .weight(1f)
                     .padding(horizontal = 16.dp),
                 onClick = onGettingStartedClick,
                 colors = ButtonDefaults.outlinedButtonColors(
@@ -72,8 +72,6 @@ fun OnboardingUI(
                     contentColor = Color.White)) {
                 Text(text = stringResource(R.string.get_started))
             }
-            Spacer(modifier = Modifier.heightIn(16.dp))
-
         }
 
     }

@@ -42,7 +42,8 @@ fun HomeScreen(navController: NavHostController, destinationViewModel: Destinati
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
-        contentPadding = PaddingValues(8.dp)
+        contentPadding = PaddingValues(8.dp),
+        modifier = Modifier.padding(bottom = 48.dp)
     ) {
         itemsIndexed(destinations) { index, destination ->
             Row(Modifier.padding(8.dp)) {
@@ -88,7 +89,6 @@ fun ItemLayout(
             fontSize = 10.sp,
             modifier = Modifier.padding(horizontal = 16.dp)
         )
-
     }
 }
 

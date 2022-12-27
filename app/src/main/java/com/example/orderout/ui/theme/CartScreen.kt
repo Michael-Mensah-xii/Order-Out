@@ -2,19 +2,14 @@ package com.example.orderout.ui.theme
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,14 +23,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.orderout.R
 
 //Create a view that displays total price in a text view
 @Composable
-fun TotalPrice() {
+fun TotalPrice(navController: NavController) {
     Box(modifier = Modifier
         .fillMaxWidth()
-        .heightIn(188.dp)
+        .heightIn(32.dp)
     ) {
         Row(
             modifier = Modifier
@@ -54,14 +52,21 @@ fun TotalPrice() {
                     .clickable { },
                 contentAlignment = Alignment.Center
             ) {
-                Icon(
-                    modifier =
-                    Modifier
-                        .size(20.dp, 20.dp),
-                    painter = painterResource(id = R.drawable.backpressed),
-                    contentDescription = null,
-                    tint = Green
-                )
+                IconButton(onClick = {
+                    navController.navigate("home") {
+                        popUpTo("home") { inclusive = true }
+                    }
+                }) {
+                    Icon(
+                        modifier =
+                        Modifier
+                            .size(20.dp, 20.dp),
+                        painter = painterResource(id = R.drawable.backpressed),
+                        contentDescription = null,
+                        tint = Green
+                    )
+                }
+
             }
         }
 
@@ -70,14 +75,14 @@ fun TotalPrice() {
         ) {
             Text(text = "Cart",
                 style = TextStyle(fontSize = 24.sp, lineHeight = 14.sp),
-                modifier = Modifier.padding(vertical = 56.dp)
+                modifier = Modifier.padding(vertical = 48.dp)
             )
         }
 
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 114.dp)
+                .padding(top = 82.dp)
                 .padding(horizontal = 16.dp)
                 .heightIn(45.dp)
                 .background(GreenMINTalpha),
@@ -175,32 +180,35 @@ fun CartElement(
 
 
 @Composable
-fun CartElementColumn(
-    modifier: Modifier = Modifier,
-) {
-    Column(modifier = Modifier.fillMaxSize()) {
-        TotalPrice()
-    LazyColumn (
+fun CartElementColumn(navController: NavHostController) {
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .verticalScroll(rememberScrollState())
+    ) {
+        TotalPrice(navController)
+        LazyColumn(
             verticalArrangement = Arrangement.spacedBy(16.dp),
-    modifier = modifier
-        .weight(50f)
-        .heightIn(303.dp)
-        .padding(vertical = 16.dp),
-    content = {
-        items(cartData) { item ->
-            CartElement(
-                drawable = item.drawable,
-                text = item.text,
-                price = item.price
+            modifier = Modifier
+                .weight(50f)
+                .heightIn(303.dp)
+                .padding(vertical = 16.dp),
+            content = {
+                items(cartData) { item ->
+                    CartElement(
+                        drawable = item.drawable,
+                        text = item.text,
+                        price = item.price
 
-            )
-        }
+                    )
 
+                }
+
+            }
+        )
+        ConfirmOrderButton(navController)
     }
-    )
-       ConfirmOrderButton()
 }
-}
+
 
 data class CartElementData(
     val drawable: Int,
@@ -215,6 +223,7 @@ val cartData = listOf(
 )
 
 
+// plus & minus button
 @Composable
 fun CartItemButton() {
     Box(
@@ -271,20 +280,11 @@ fun CartItemButton() {
 
 }
 
-@Composable
-fun CartScreen(modifier: Modifier = Modifier) {
-    Column(modifier
-        .fillMaxSize()
-    ) {
-        CartElementColumn()
-    }
-}
-
 //create a button that says confirm order
 @Composable
-fun ConfirmOrderButton() {
+fun ConfirmOrderButton(navController: NavController) {
     Column(modifier = Modifier
-        .padding(bottom = 24.dp)
+        .padding(bottom = 60.dp)
         .padding(horizontal = 16.dp)
     ) {
         Button(
@@ -293,7 +293,11 @@ fun ConfirmOrderButton() {
                 .fillMaxWidth(),
             shape = RoundedCornerShape(4.dp),
             colors = (ButtonDefaults.buttonColors(Green)),
-            onClick = {  },
+            onClick = {
+                navController.navigate("pay_select") {
+                    popUpTo("pay_select") { inclusive = true }
+                }
+            }
         ) {
             Text(
                 stringResource(R.string.confirm_button),
@@ -305,10 +309,24 @@ fun ConfirmOrderButton() {
 
 }
 
+
+//Screen
+@Composable
+fun CartScreen(navController: NavHostController) {
+    Column(modifier = Modifier
+        .fillMaxSize()
+    ) {
+        CartElementColumn(navController)
+    }
+}
+
+
 @Preview(showBackground = true)
 @Composable
 fun TotalPricePreview() {
-    TotalPrice()
+    val navController = rememberNavController()
+
+    TotalPrice(navController)
 }
 
 @Preview(showBackground = true)
@@ -321,24 +339,7 @@ fun CartElementPreview() {
 
 @Preview(showBackground = true)
 @Composable
-fun CartElementColumnPreview() {
-    CartElementColumn()
-}
-
-@Preview(showBackground = true)
-@Composable
-fun CartItemButtonPreview() {
-    CartItemButton()
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ConfirmButtonPreview() {
-    ConfirmOrderButton()
-}
-
-@Preview(showBackground = true)
-@Composable
 fun CartScreenPreview() {
-    CartScreen()
+    val navController = rememberNavController()
+    CartScreen(navController)
 }
