@@ -12,6 +12,4 @@ Screenshots of figma reference
 
 
 # Screenshots
-Screenshots of app ![payment select](https://user-images.githubusercontent.com/95852329/209734920-f39972cd-b7b3-4896-813f-d5d92c2c555b.png)
-![cart screen](https://user-images.githubusercontent.com/95852329/209734922-3492279a-7476-47fd-be20-659c213dbacf.png)
-![homescreen](https://user-images.githubusercontent.com/95852329/209734925-4ad2ea9d-7d9e-4336-bd3e-931f82a8c981.png)
+Screenshots of app ![payment select](https://user-images.githubusercontent.com/95852329/209734920-f39972cd-b7b3-4896-813f-d5d92c2c555b.png)![cart screen](https://user-images.githubusercontent.com/95852329/209734922-3492279a-7476-47fd-be20-659c213dbacf.png)![homescreen](https://user-images.githubusercontent.com/95852329/209734925-4ad2ea9d-7d9e-4336-bd3e-931f82a8c981.png)
