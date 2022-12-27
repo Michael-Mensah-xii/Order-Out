@@ -11,6 +11,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.orderout.R
 import com.example.orderout.model.NavigationItem
 import com.example.orderout.ui.theme.Green
 
@@ -39,7 +40,16 @@ fun BottomNavigationBar(navController: NavController) {
                 alwaysShowLabel = false,
                 selected = false,
                 onClick = {
-                    /* Add code later */
+
+                    if (item.icon == R.drawable.home_icon) {
+                        navController.navigate("home") {
+                            popUpTo("home") { inclusive = true }
+                        }
+                    } else {
+
+                        null
+                    }
+
                 },
 
                 )
