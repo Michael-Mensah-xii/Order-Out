@@ -49,15 +49,14 @@ fun PaymentSelect(
         Row(
             modifier = Modifier
                 .heightIn(69.dp)
-                .fillMaxWidth()
-                .padding(top = 16.dp),
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Image(
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .size(height = 100.dp, width = 300.dp),
+                    .fillMaxSize(),
                 painter = painterResource(id = drawable),
                 contentDescription = "temp",
             )
@@ -76,7 +75,8 @@ fun PaymentList(
         Text(
             text = "Choose your payment method",
             modifier = Modifier
-                .padding(horizontal = 16.dp),
+                .padding(horizontal = 16.dp)
+                .padding(top = 16.dp),
             fontSize = 16.sp,
         )
         LazyColumn(
@@ -114,7 +114,7 @@ data class PaymentElementData(
 )
 
 val paymentdata = listOf(
-    PaymentElementData(R.drawable.visa2),
+    PaymentElementData(R.drawable.visa),
     PaymentElementData(R.drawable.mastercard),
     PaymentElementData(R.drawable.paypal),
 )
@@ -218,11 +218,3 @@ fun PaymentListPreview() {
     PaymentList(navController)
 }
 
-
-@Preview(showBackground = true)
-@Composable
-fun PaymentSelectPreview() {
-    PaymentSelect(R.drawable.visa2) {
-        // Perform some action when the PaymentSelect component is clicked
-    }
-}

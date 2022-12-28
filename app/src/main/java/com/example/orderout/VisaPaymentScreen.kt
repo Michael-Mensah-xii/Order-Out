@@ -86,7 +86,7 @@ fun VisaPaymentDetails(navController: NavController) {
 
         }
 
-        Spacer(modifier = Modifier.heightIn(32.dp))
+        Spacer(modifier = Modifier.heightIn(16.dp))
 
 
         Text(
@@ -112,7 +112,7 @@ fun VisaPaymentDetails(navController: NavController) {
 
             )
 
-        Spacer(modifier = Modifier.heightIn(32.dp))
+        Spacer(modifier = Modifier.heightIn(16.dp))
 
         Text(
             text = "Card number:",
@@ -140,7 +140,7 @@ fun VisaPaymentDetails(navController: NavController) {
 
         )
 
-        Spacer(modifier = Modifier.heightIn(32.dp))
+        Spacer(modifier = Modifier.heightIn(24.dp))
 
         Row(modifier = Modifier
             .fillMaxWidth(),
