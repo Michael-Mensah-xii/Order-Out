@@ -28,6 +28,9 @@ import com.example.orderout.ui.theme.paleGreen
 @Composable
 fun VisaPaymentDetails(navController: NavController) {
     val textState = rememberSaveable { mutableStateOf("") }
+    val textState1 = rememberSaveable { mutableStateOf("") }
+    val textState2 = rememberSaveable { mutableStateOf("") }
+    val textState3 = rememberSaveable { mutableStateOf("") }
 
     Column(
         modifier = Modifier
@@ -73,7 +76,8 @@ fun VisaPaymentDetails(navController: NavController) {
 
             Column(modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(220.dp)
+                .heightIn(220.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
 
             ) {
                 Image(painter = painterResource(id = R.drawable.visa_card_template),
@@ -119,7 +123,7 @@ fun VisaPaymentDetails(navController: NavController) {
             textAlign = TextAlign.Start,
         )
         OutlinedTextField(
-            value = textState.value,
+            value = textState1.value,
             onValueChange = { textState.value = it },
             modifier = Modifier
                 .fillMaxWidth()
@@ -144,7 +148,7 @@ fun VisaPaymentDetails(navController: NavController) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             OutlinedTextField(
-                value = textState.value,
+                value = textState2.value,
                 placeholder = {
                     Text("Expiry date:  MM/YY")
                 },
@@ -163,7 +167,7 @@ fun VisaPaymentDetails(navController: NavController) {
 
 
             OutlinedTextField(
-                value = textState.value,
+                value = textState3.value,
                 placeholder = {
                     Text("CVV:")
                 },

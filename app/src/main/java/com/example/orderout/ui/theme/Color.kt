@@ -2,7 +2,7 @@ package com.example.orderout.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Paymentcolour = Color(0xFFD3DED3)
+val splashBackground = Color(0xFF83D1DB)
 val Green = Color(0xFF4CAF50)
 val GreenMINT = Color(0x804CB04F)
 val GreenMINTalpha = Color(212, 235, 211, 255)
