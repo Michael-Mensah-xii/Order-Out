@@ -84,7 +84,6 @@ fun VisaPaymentDetails(navController: NavController) {
                     contentDescription = "visa card")
             }
 
-
         }
 
         Spacer(modifier = Modifier.heightIn(32.dp))
