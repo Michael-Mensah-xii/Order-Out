@@ -123,7 +123,7 @@ fun VisaPaymentDetails(navController: NavController) {
         )
         OutlinedTextField(
             value = textState1.value,
-            onValueChange = { textState.value = it },
+            onValueChange = { textState1.value = it },
             modifier = Modifier
                 .fillMaxWidth()
                 .border(2.dp, color = GreenMINTalpha, shape = RoundedCornerShape(8.dp))
@@ -151,7 +151,7 @@ fun VisaPaymentDetails(navController: NavController) {
                 placeholder = {
                     Text("Expiry date:  MM/YY")
                 },
-                onValueChange = { textState.value = it },
+                onValueChange = { textState2.value = it },
                 modifier = Modifier
                     .border(2.dp, color = GreenMINTalpha, shape = RoundedCornerShape(8.dp))
                     .widthIn(min = 192.dp)
@@ -170,7 +170,7 @@ fun VisaPaymentDetails(navController: NavController) {
                 placeholder = {
                     Text("CVV:")
                 },
-                onValueChange = { textState.value = it },
+                onValueChange = { textState3.value = it },
                 modifier = Modifier
                     .border(2.dp, color = GreenMINTalpha, shape = RoundedCornerShape(8.dp))
                     .widthIn(min = 137.dp)

@@ -72,7 +72,7 @@ fun ItemLayout(
             painter = painterResource(destination.id),
             contentDescription = stringResource(destination.name),
             modifier = Modifier.fillMaxWidth(),
-            contentScale = ContentScale.Fit
+            contentScale = ContentScale.Crop,
         )
         Spacer(modifier = Modifier.heightIn(10.dp))
 

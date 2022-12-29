@@ -90,7 +90,7 @@ fun PaymentList(
                     PaymentSelect(
                         drawable = item.drawable,
                         onClick = {
-                            if (item.drawable == R.drawable.visa2) {
+                            if (item.drawable == R.drawable.visa) {
                                 navController.navigate("visa_select") {
                                     popUpTo("visa_select") { inclusive = true }
                                 }
