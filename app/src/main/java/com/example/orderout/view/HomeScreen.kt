@@ -1,4 +1,4 @@
-package com.example.orderout
+package com.example.orderout.view
 
 import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -24,9 +24,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.orderout.R
 import com.example.orderout.model.FoodData
 import com.example.orderout.model.FoodDataSource
-import com.example.orderout.ui.theme.DestinationViewModel
+import com.example.orderout.model.DestinationViewModel
 import com.example.orderout.ui.theme.RatingYellow
 
 @ExperimentalFoundationApi
@@ -52,6 +53,7 @@ fun HomeScreen(navController: NavHostController, destinationViewModel: Destinati
         }
     }
 }
+
 
 @Composable
 fun ItemLayout(

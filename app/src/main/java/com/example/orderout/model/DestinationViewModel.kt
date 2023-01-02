@@ -1,4 +1,4 @@
-package com.example.orderout.ui.theme
+package com.example.orderout.model
 
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf

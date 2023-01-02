@@ -1,4 +1,4 @@
-package com.example.orderout
+package com.example.orderout.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -15,6 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import com.example.orderout.R
 import com.example.orderout.ui.theme.Page
 
 @Composable

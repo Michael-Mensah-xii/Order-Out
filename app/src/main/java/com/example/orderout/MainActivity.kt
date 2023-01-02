@@ -18,10 +18,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.orderout.ui.theme.CartScreen
-import com.example.orderout.ui.theme.DestinationViewModel
+import com.example.orderout.model.DestinationViewModel
 import com.example.orderout.ui.theme.OrderOutTheme
-import com.example.orderout.view.BottomNavigationBar
+import com.example.orderout.view.*
 import com.google.accompanist.pager.ExperimentalPagerApi
 
 class MainActivity : ComponentActivity() {

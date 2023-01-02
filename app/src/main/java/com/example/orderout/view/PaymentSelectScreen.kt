@@ -1,4 +1,4 @@
-package com.example.orderout
+package com.example.orderout.view
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
@@ -23,6 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.orderout.R
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.orderout.ui.theme.Green

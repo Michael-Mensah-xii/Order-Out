@@ -1,4 +1,4 @@
-package com.example.orderout
+package com.example.orderout.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

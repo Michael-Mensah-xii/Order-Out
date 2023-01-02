@@ -1,4 +1,4 @@
-package com.example.orderout.ui.theme
+package com.example.orderout.view
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -27,6 +27,10 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.orderout.R
+import com.example.orderout.ui.theme.Green
+import com.example.orderout.ui.theme.GreenArmy
+import com.example.orderout.ui.theme.GreenMINTalpha
+import com.example.orderout.ui.theme.paleGreen
 
 //Create a view that displays total price in a text view
 @Composable
@@ -284,7 +288,7 @@ fun CartItemButton() {
 @Composable
 fun ConfirmOrderButton(navController: NavController) {
     Column(modifier = Modifier
-        .padding(bottom = 60.dp)
+        .padding(bottom = 32.dp)
         .padding(horizontal = 16.dp)
     ) {
         Button(
