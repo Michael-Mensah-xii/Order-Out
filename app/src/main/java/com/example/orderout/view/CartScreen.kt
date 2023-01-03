@@ -209,6 +209,7 @@ fun CartElementColumn(navController: NavHostController) {
 
             }
         )
+
         ConfirmOrderButton(navController)
     }
 }
@@ -288,7 +289,7 @@ fun CartItemButton() {
 @Composable
 fun ConfirmOrderButton(navController: NavController) {
     Column(modifier = Modifier
-        .padding(bottom = 32.dp)
+        .padding(bottom = 52.dp)
         .padding(horizontal = 16.dp)
     ) {
         Button(
@@ -306,7 +307,7 @@ fun ConfirmOrderButton(navController: NavController) {
             Text(
                 stringResource(R.string.confirm_button),
                 color = Color.White,
-                fontSize = 14.sp,
+                fontSize = 18.sp,
             )
         }
     }

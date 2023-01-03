@@ -9,12 +9,14 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -25,9 +27,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.orderout.R
+import com.example.orderout.model.DestinationViewModel
 import com.example.orderout.model.FoodData
 import com.example.orderout.model.FoodDataSource
-import com.example.orderout.model.DestinationViewModel
 import com.example.orderout.ui.theme.RatingYellow
 
 @ExperimentalFoundationApi
@@ -65,7 +67,8 @@ fun ItemLayout(
         verticalArrangement = Arrangement.Center,
         modifier = Modifier
             .background(MaterialTheme.colors.background)
-            .fillMaxWidth()
+            .widthIn(185.dp)
+            .clip(RoundedCornerShape(8.dp))
             .clickable {
                 navController.navigate("details/$index")
             }
@@ -73,8 +76,11 @@ fun ItemLayout(
         Image(
             painter = painterResource(destination.id),
             contentDescription = stringResource(destination.name),
-            modifier = Modifier.fillMaxWidth(),
-            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .widthIn(185.dp)
+                .heightIn(140.dp)
+                .clip(RoundedCornerShape(8.dp)),
+            contentScale = ContentScale.Fit,
         )
         Spacer(modifier = Modifier.heightIn(10.dp))
 

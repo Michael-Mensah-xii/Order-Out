@@ -18,9 +18,13 @@ Screenshots of figma reference:
 
 
 # Screenshots
-Screenshots of app 
+Screenshots of app
 
-<img width="308" alt="min image 1" src="https://user-images.githubusercontent.com/95852329/209735691-3d634e92-c994-4228-a010-009b0121eab1.png"><img width="308" alt="min image 2" src="https://user-images.githubusercontent.com/95852329/209735694-07cc97da-6fcd-479d-8b6d-7895695b25d5.png"><img width="308" alt="min screenshot 3" src="https://user-images.githubusercontent.com/95852329/209735699-e6049394-bf97-4290-a34a-188438b274b0.png">
+<img height="740" src="../../Desktop/Screenshot_20230102_234405.png" width="360"/><img height="740" src="../../Desktop/Screenshot_20230102_234339.png" width="360"/>
+<img height="740" src="../../Desktop/Screenshot_20230102_235741.png" width="360"/><img height="740" src="../../Desktop/Screenshot_20230102_235144.png" width="360"/><img height="740" src="../../Desktop/Screenshot_20230102_234314.png" width="360"/>
+<img height="740" src="../../Desktop/Screenshot_20230102_234208.png" width="360"/><img height="740" src="../../Desktop/Screenshot_20230102_234154.png" width="360"/><img height="740" src="../../Desktop/Screenshot_20230102_234122.png" width="360"/>
+
+
 
 # App Visual
 https://user-images.githubusercontent.com/95852329/209736758-975b699b-8aa2-45a0-ab2e-1e43074a480f.mp4
