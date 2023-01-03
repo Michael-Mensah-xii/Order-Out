@@ -25,14 +25,14 @@ Screenshots of app
 
 ##NEW
 
-![Screenshot_20230102_234208](https://user-images.githubusercontent.com/95852329/210286968-fcf5d2b1-dd6e-4c94-8bb3-246d21cfb32a.png)
-![Screenshot_20230102_234154](https://user-images.githubusercontent.com/95852329/210286978-c79fa9f7-0270-433d-8fd6-d217946e0dcb.png)
-![Screenshot_20230102_234122](https://user-images.githubusercontent.com/95852329/210286995-59f7b99b-098e-4803-9454-674b5cd7f7a8.png)
-![Screenshot_20230102_235741](https://user-images.githubusercontent.com/95852329/210287210-48018536-910b-4534-bb3e-1d8f211003e4.png)
-![Screenshot_20230102_234314](https://user-images.githubusercontent.com/95852329/210286966-34cfdfd2-652e-42e8-a2f5-817b60fbf829.png)
-![Screenshot_20230102_234339](https://user-images.githubusercontent.com/95852329/210286965-49f768dd-3d61-4620-86f4-96f551ad0ba9.png)
-![Screenshot_20230102_234405](https://user-images.githubusercontent.com/95852329/210286963-6ecb8657-fbad-4bc4-af68-f3e9094b9ed0.png)
-![Screenshot_20230102_235144](https://user-images.githubusercontent.com/95852329/210286961-1a5223b2-7664-4000-8974-1d82e70eae2f.png)
+<img alt="Screenshot_20230102_234208" height="740" src="https://user-images.githubusercontent.com/95852329/210286968-fcf5d2b1-dd6e-4c94-8bb3-246d21cfb32a.png" width="360"/>
+<img alt="Screenshot_20230102_234154" height="740" src="https://user-images.githubusercontent.com/95852329/210286978-c79fa9f7-0270-433d-8fd6-d217946e0dcb.png" width="360"/>
+<img alt="Screenshot_20230102_234122" height="740" src="https://user-images.githubusercontent.com/95852329/210286995-59f7b99b-098e-4803-9454-674b5cd7f7a8.png" width="360"/>
+<img alt="Screenshot_20230102_235741" height="740" src="https://user-images.githubusercontent.com/95852329/210287210-48018536-910b-4534-bb3e-1d8f211003e4.png" width="360"/>
+<img alt="Screenshot_20230102_234314" height="740" src="https://user-images.githubusercontent.com/95852329/210286966-34cfdfd2-652e-42e8-a2f5-817b60fbf829.png" width="360"/>
+<img alt="Screenshot_20230102_234339" height="740" src="https://user-images.githubusercontent.com/95852329/210286965-49f768dd-3d61-4620-86f4-96f551ad0ba9.png" width="360"/>
+<img alt="Screenshot_20230102_234405" height="740" src="https://user-images.githubusercontent.com/95852329/210286963-6ecb8657-fbad-4bc4-af68-f3e9094b9ed0.png" width="360"/>
+<img alt="Screenshot_20230102_235144" height="740" src="https://user-images.githubusercontent.com/95852329/210286961-1a5223b2-7664-4000-8974-1d82e70eae2f.png" width="360"/>
 
 
 
