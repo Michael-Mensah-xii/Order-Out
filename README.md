@@ -19,11 +19,14 @@ Screenshots of figma reference:
 
 # Screenshots
 Screenshots of app
-
-<img height="740" src="../../Desktop/Screenshot_20230102_234405.png" width="360"/>   <img height="740" src="../../Desktop/Screenshot_20230102_234339.png" width="360"/>
-<img height="740" src="../../Desktop/Screenshot_20230102_235741.png" width="360"/>   <img height="740" src="../../Desktop/Screenshot_20230102_235144.png" width="360"/> <img height="740" src="../../Desktop/Screenshot_20230102_234314.png" width="360"/>
-<img height="740" src="../../Desktop/Screenshot_20230102_234208.png" width="360"/>   <img height="740" src="../../Desktop/Screenshot_20230102_234154.png" width="360"/> <img height="740" src="../../Desktop/Screenshot_20230102_234122.png" width="360"/>
-
+![](../../Desktop/Screenshot_20230102_234122.png)
+![](../../Desktop/Screenshot_20230102_234154.png)
+![](../../Desktop/Screenshot_20230102_234208.png)
+![](../../Desktop/Screenshot_20230102_235741.png)
+![](../../Desktop/Screenshot_20230102_234314.png)
+![](../../Desktop/Screenshot_20230102_235144.png)
+![](../../Desktop/Screenshot_20230102_234339.png)
+![](../../Desktop/Screenshot_20230102_234405.png)
 
 
 # App Visual
