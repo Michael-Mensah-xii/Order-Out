@@ -143,6 +143,35 @@ fun VisaPaymentDetails(navController: NavController) {
 
         Spacer(modifier = Modifier.heightIn(24.dp))
 
+       /* Row(modifier = Modifier
+            .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Box(modifier = Modifier) {
+                Text(
+                    text = "Expiry date:  MM/YY",
+                    modifier = Modifier.widthIn(min = 192.dp),
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Normal,
+                    textAlign = TextAlign.Start,
+                )
+
+                Box(modifier = Modifier.padding(start = 224.dp)) {
+                    Text(
+                        text = "CVV:",
+                        modifier = Modifier.widthIn(min = 137.dp),
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Normal,
+                        textAlign = TextAlign.Start,
+                    )
+
+                }
+
+            }
+        }*/
+
+
+
         Row(modifier = Modifier
             .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
@@ -164,7 +193,6 @@ fun VisaPaymentDetails(navController: NavController) {
                         Color(212, 235, 211, 255)
                     ),
             )
-
 
             OutlinedTextField(
                 value = textState3.value,

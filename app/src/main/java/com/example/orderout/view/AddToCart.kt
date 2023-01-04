@@ -11,6 +11,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -28,8 +30,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.orderout.R
-import com.example.orderout.model.FoodDataSource
 import com.example.orderout.model.DestinationViewModel
+import com.example.orderout.model.FoodDataSource
 import com.example.orderout.ui.theme.Green
 import com.example.orderout.ui.theme.GreenMINT
 import com.example.orderout.ui.theme.paleGreen
@@ -51,6 +53,15 @@ fun FoodItemCheck(
     LaunchedEffect(Unit) {
         destinationViewModel.setTitle(destinationName)
     }
+
+
+    //increment & decrement & price update logic
+    val priceString = stringResource(destination.price)
+    val priceRegex = "\\d+\\.\\d+".toRegex()
+    val price = priceRegex.find(priceString)?.value
+    val quantity = remember { mutableStateOf(price?.toDouble() ?: 0.0) }
+    val cartItemQuantity = remember { mutableStateOf(1) }
+
 
     Box(modifier = Modifier
     ) {
@@ -138,46 +149,56 @@ fun FoodItemCheck(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier.padding(horizontal = 8.dp)
                     ) {
-                        Box(
-                            modifier = Modifier
-                                .clip(RoundedCornerShape(8.dp))
-                                .background(GreenMINT)
-                                .padding(4.dp)
-                                .clickable { },
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Icon(
-                                modifier =
-                                Modifier
-                                    .size(20.dp, 20.dp),
-                                painter = painterResource(id = R.drawable.minimize),
-                                contentDescription = null,
-                                tint = Color.White
-                            )
+                        if (price != null) {
+                            Box(
+                                modifier = Modifier
+                                    .clip(RoundedCornerShape(8.dp))
+                                    .background(GreenMINT)
+                                    .padding(4.dp)
+                                    .clickable {
+                                        quantity.value -= price.toDouble()
+                                        cartItemQuantity.value -= 1
+                                    },
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Icon(
+                                    modifier =
+                                    Modifier
+                                        .size(20.dp, 20.dp),
+                                    painter = painterResource(id = R.drawable.minimize),
+                                    contentDescription = null,
+                                    tint = Color.White
+                                )
+                            }
                         }
 
                         Text(
-                            text = "1",
+                            text = "${cartItemQuantity.value}",
                             fontSize = 15.sp,
                             fontWeight = FontWeight.Medium,
                             color = Color.Black,
                         )
 
 
-                        Box(
-                            modifier = Modifier
-                                .clip(RoundedCornerShape(8.dp))
-                                .background(GreenMINT)
-                                .padding(4.dp)
-                                .clickable { },
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Icon(
-                                modifier = Modifier.size(20.dp, 20.dp),
-                                imageVector = Icons.Default.Add,
-                                contentDescription = stringResource(R.string.text_add_icon),
-                                tint = Color.White
-                            )
+                        if (price != null) {
+                            Box(
+                                modifier = Modifier
+                                    .clip(RoundedCornerShape(8.dp))
+                                    .background(GreenMINT)
+                                    .padding(4.dp)
+                                    .clickable {
+                                        quantity.value += price.toDouble()
+                                        cartItemQuantity.value += 1
+                                    },
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Icon(
+                                    modifier = Modifier.size(20.dp, 20.dp),
+                                    imageVector = Icons.Default.Add,
+                                    contentDescription = stringResource(R.string.text_add_icon),
+                                    tint = Color.White
+                                )
+                            }
                         }
                     }
                 }
@@ -206,7 +227,7 @@ fun FoodItemCheck(
                     )
 
                     Text(
-                        text = destinationPrice,
+                        text = String.format("GHS %.2f", quantity.value),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Normal,
                         color = Color.Black,
