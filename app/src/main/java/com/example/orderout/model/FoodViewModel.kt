@@ -16,22 +16,16 @@ class FoodViewModel(private val index: String) {
 
     fun incrementQuantity() {
         quantity.value += price
-        updatePrice(quantity.value.toDouble())
+        cartItemQuantity.value += 1
     }
 
 
     fun decrementQuantity() {
-        if (quantity.value > price) {
-            quantity.value -= price
-            updatePrice(quantity.value.toDouble())
-        }
+        quantity.value -= price
+        cartItemQuantity.value -= 1
     }
 
 
-    fun updatePrice(newPrice: Double) {
-        price = newPrice
-        quantity.value = newPrice
-    }
 
     // other logic
 

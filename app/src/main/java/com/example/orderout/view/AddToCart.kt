@@ -131,8 +131,7 @@ fun FoodItemCheck(
                                 .background(GreenMINT)
                                 .padding(4.dp)
                                 .clickable {
-                                    foodViewModel.quantity.value -= foodViewModel.price.toDouble()
-                                    foodViewModel.cartItemQuantity.value -= 1
+                                    foodViewModel.decrementQuantity()
                                 },
                             contentAlignment = Alignment.Center
                         ) {
@@ -160,8 +159,7 @@ fun FoodItemCheck(
                                 .background(GreenMINT)
                                 .padding(4.dp)
                                 .clickable {
-                                   foodViewModel.quantity.value += foodViewModel.price.toDouble()
-                                    foodViewModel.cartItemQuantity.value += 1
+                                 foodViewModel.incrementQuantity()
                                 },
                             contentAlignment = Alignment.Center
                         ) {
