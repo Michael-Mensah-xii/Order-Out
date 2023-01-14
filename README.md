@@ -22,11 +22,12 @@ Screenshots of app
 
 <img alt="Screenshot_20230102_234122" height="740" src="https://user-images.githubusercontent.com/95852329/210286995-59f7b99b-098e-4803-9454-674b5cd7f7a8.png" width="360"/>  <img alt="Screenshot_20230102_234154" height="740" src="https://user-images.githubusercontent.com/95852329/210286978-c79fa9f7-0270-433d-8fd6-d217946e0dcb.png" width="360"/>
 
-<img height="740" src="../../Desktop/lastpager.png" width="360"/>  <img alt="Screenshot_20230102_235741" height="740" src="https://user-images.githubusercontent.com/95852329/210287210-48018536-910b-4534-bb3e-1d8f211003e4.png" width="360"/>
 
-<img height="740" src="../../Desktop/addtocartsc.png" width="360"/>  <img height="740" src="../../Desktop/cartsc.png" width="360"/>
-
-<img height="740" src="../../Desktop/payselsc.png" width="360"/>  <img height="740" src="../../Desktop/visapaysc.png" width="360"/>
+![payselsc](https://user-images.githubusercontent.com/95852329/212491808-5efec0b8-757d-4c83-b88e-d88916a70543.png)
+![visapaysc](https://user-images.githubusercontent.com/95852329/212491813-54c03670-e193-4e56-b6d9-3e3a271b4c04.png)
+![cartsc](https://user-images.githubusercontent.com/95852329/212491814-8eed9909-a401-44aa-bd20-22fb3407cab2.png)
+![addtocartsc](https://user-images.githubusercontent.com/95852329/212491819-eb97fcaf-3192-43d9-b8b3-0b63f7ebfb79.png)
+![lastpager](https://user-images.githubusercontent.com/95852329/212491834-83451947-5235-4a61-a5c4-febdf14ea9e9.png)
 
 
 
