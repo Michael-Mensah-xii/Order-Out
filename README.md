@@ -22,7 +22,7 @@ Screenshots of app
 
 <img alt="Screenshot_20230102_234122" height="740" src="https://user-images.githubusercontent.com/95852329/210286995-59f7b99b-098e-4803-9454-674b5cd7f7a8.png" width="360"/>  <img alt="Screenshot_20230102_234154" height="740" src="https://user-images.githubusercontent.com/95852329/210286978-c79fa9f7-0270-433d-8fd6-d217946e0dcb.png" width="360"/>
 
-<img alt="lastpager" height="740" src="https://user-images.githubusercontent.com/95852329/212491834-83451947-5235-4a61-a5c4-febdf14ea9e9.png" width="360"/>
+<img alt="lastpager" height="740" src="https://user-images.githubusercontent.com/95852329/212491834-83451947-5235-4a61-a5c4-febdf14ea9e9.png" width="360"/>  <img alt="Screenshot_20230102_235741" height="740" src="https://user-images.githubusercontent.com/95852329/212492164-d3bc4e9e-0704-4722-80b9-8da2983b2cb0.png" width="360"/>
 
 <img alt="addtocartsc" height="740" src="https://user-images.githubusercontent.com/95852329/212491819-eb97fcaf-3192-43d9-b8b3-0b63f7ebfb79.png" width="360"/>  <img alt="cartsc" height="740" src="https://user-images.githubusercontent.com/95852329/212491814-8eed9909-a401-44aa-bd20-22fb3407cab2.png" width="360"/>
 
@@ -34,7 +34,6 @@ Screenshots of app
 # App Visual
 https://user-images.githubusercontent.com/95852329/209736758-975b699b-8aa2-45a0-ab2e-1e43074a480f.mp4
 
-![Screenshot_20230102_235741](https://user-images.githubusercontent.com/95852329/212492164-d3bc4e9e-0704-4722-80b9-8da2983b2cb0.png)
 
 
 
