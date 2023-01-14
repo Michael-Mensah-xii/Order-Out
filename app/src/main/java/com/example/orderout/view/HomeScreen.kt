@@ -1,6 +1,5 @@
 package com.example.orderout.view
 
-import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -14,7 +13,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -27,21 +25,16 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.orderout.R
-import com.example.orderout.model.DestinationViewModel
 import com.example.orderout.model.FoodData
 import com.example.orderout.model.FoodDataSource
 import com.example.orderout.ui.theme.RatingYellow
 
 @ExperimentalFoundationApi
 @Composable
-fun HomeScreen(navController: NavHostController, destinationViewModel: DestinationViewModel) {
+fun HomeScreen(navController: NavHostController) {
     val destinations = FoodDataSource().loadData()
 
-    LaunchedEffect(Unit) {
-        destinationViewModel.setTitle("Lazy Grid Layout")
-    }
 
-    Log.d("HomeScreen_title", destinationViewModel.title.value)
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
@@ -92,7 +85,7 @@ fun ItemLayout(
         )
         Rating(rating = destination.rating)
         Text(
-            text = stringResource(destination.price),
+            text = String.format("GHS %.2f", destination.price),
             color = Color.Black,
             fontSize = 10.sp,
             modifier = Modifier.padding(horizontal = 16.dp)
@@ -136,7 +129,7 @@ fun ItemLayoutPreview() {
         name = R.string.name1,
         description = R.string.description1,
         rating = 4,
-        price = R.string.price_rice_pudding
+        price = 30.00
     )
     ItemLayout(destination, 0, navController)
 }

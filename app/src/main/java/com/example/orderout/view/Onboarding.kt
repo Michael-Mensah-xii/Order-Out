@@ -66,12 +66,13 @@ fun OnboardingUI(navController: NavController) {
             Button(shape = RoundedCornerShape(4.dp),
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(bottom = 16.dp)
                     .height(58.dp)
                     .weight(1f)
                     .padding(horizontal = 16.dp),
                 onClick = {
                     navController.navigate("home") {
-                        popUpTo("home") { inclusive = true }
+                        popUpTo(0) { inclusive = true }
                     }
                 },
                 colors = ButtonDefaults.outlinedButtonColors(

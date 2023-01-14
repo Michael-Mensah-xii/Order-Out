@@ -10,9 +10,6 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -30,8 +27,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.orderout.R
-import com.example.orderout.model.DestinationViewModel
-import com.example.orderout.model.FoodDataSource
+import com.example.orderout.model.FoodViewModel
 import com.example.orderout.ui.theme.Green
 import com.example.orderout.ui.theme.GreenMINT
 import com.example.orderout.ui.theme.paleGreen
@@ -39,29 +35,9 @@ import com.example.orderout.ui.theme.paleGreen
 //create box that displays food item image with details
 @Composable
 fun FoodItemCheck(
-    index: String,
+    foodViewModel: FoodViewModel,
     navController: NavController,
-    destinationViewModel: DestinationViewModel,
 ) {
-    val dataSource = FoodDataSource().loadData()
-    val destination = dataSource[index.toInt()]
-    val destinationName = stringResource(destination.name)
-    val destinationDescription = stringResource(destination.description)
-    val destinationImage = painterResource(destination.id)
-    val destinationPrice = stringResource(destination.price)
-
-    LaunchedEffect(Unit) {
-        destinationViewModel.setTitle(destinationName)
-    }
-
-
-    //increment & decrement & price update logic
-    val priceString = stringResource(destination.price)
-    val priceRegex = "\\d+\\.\\d+".toRegex()
-    val price = priceRegex.find(priceString)?.value
-    val quantity = remember { mutableStateOf(price?.toDouble() ?: 0.0) }
-    val cartItemQuantity = remember { mutableStateOf(1) }
-
 
     Box(modifier = Modifier
     ) {
@@ -122,8 +98,8 @@ fun FoodItemCheck(
 
             }
             Image(
-                painter = destinationImage,
-                contentDescription = destinationName,
+                painter = painterResource(id = foodViewModel.image),
+                contentDescription = stringResource(id = foodViewModel.name),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxWidth(),
@@ -149,56 +125,52 @@ fun FoodItemCheck(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier.padding(horizontal = 8.dp)
                     ) {
-                        if (price != null) {
-                            Box(
-                                modifier = Modifier
-                                    .clip(RoundedCornerShape(8.dp))
-                                    .background(GreenMINT)
-                                    .padding(4.dp)
-                                    .clickable {
-                                        quantity.value -= price.toDouble()
-                                        cartItemQuantity.value -= 1
-                                    },
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Icon(
-                                    modifier =
-                                    Modifier
-                                        .size(20.dp, 20.dp),
-                                    painter = painterResource(id = R.drawable.minimize),
-                                    contentDescription = null,
-                                    tint = Color.White
-                                )
-                            }
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(8.dp))
+                                .background(GreenMINT)
+                                .padding(4.dp)
+                                .clickable {
+                                    foodViewModel.quantity.value -= foodViewModel.price.toDouble()
+                                    foodViewModel.cartItemQuantity.value -= 1
+                                },
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                modifier =
+                                Modifier
+                                    .size(20.dp, 20.dp),
+                                painter = painterResource(id = R.drawable.minimize),
+                                contentDescription = null,
+                                tint = Color.White
+                            )
                         }
 
                         Text(
-                            text = "${cartItemQuantity.value}",
+                            text = "${foodViewModel.cartItemQuantity.value}",
                             fontSize = 15.sp,
                             fontWeight = FontWeight.Medium,
                             color = Color.Black,
                         )
 
 
-                        if (price != null) {
-                            Box(
-                                modifier = Modifier
-                                    .clip(RoundedCornerShape(8.dp))
-                                    .background(GreenMINT)
-                                    .padding(4.dp)
-                                    .clickable {
-                                        quantity.value += price.toDouble()
-                                        cartItemQuantity.value += 1
-                                    },
-                                contentAlignment = Alignment.Center
-                            ) {
-                                Icon(
-                                    modifier = Modifier.size(20.dp, 20.dp),
-                                    imageVector = Icons.Default.Add,
-                                    contentDescription = stringResource(R.string.text_add_icon),
-                                    tint = Color.White
-                                )
-                            }
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(8.dp))
+                                .background(GreenMINT)
+                                .padding(4.dp)
+                                .clickable {
+                                   foodViewModel.quantity.value += foodViewModel.price.toDouble()
+                                    foodViewModel.cartItemQuantity.value += 1
+                                },
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                modifier = Modifier.size(20.dp, 20.dp),
+                                imageVector = Icons.Default.Add,
+                                contentDescription = stringResource(R.string.text_add_icon),
+                                tint = Color.White
+                            )
                         }
                     }
                 }
@@ -220,14 +192,14 @@ fun FoodItemCheck(
                         .fillMaxWidth()
                 ) {
                     Text(
-                        text = destinationName,
+                        text = stringResource(id = foodViewModel.name),
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Normal,
                         color = Color.Black,
                     )
 
                     Text(
-                        text = String.format("GHS %.2f", quantity.value),
+                        text = String.format("GHS %.2f", foodViewModel.quantity.value),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Normal,
                         color = Color.Black,
@@ -261,7 +233,7 @@ fun FoodItemCheck(
                     Spacer(modifier = Modifier.padding(8.dp))
 
                     Text(
-                        text = destinationDescription,
+                        text = stringResource(id = foodViewModel.description),
                         modifier = Modifier,
                         style = TextStyle(fontSize = 18.sp),
                         overflow = TextOverflow.Clip
@@ -305,7 +277,8 @@ fun FoodItemCheck(
 @Composable
 fun FoodItemCheckPreview() {
     val navController = rememberNavController()
-    FoodItemCheck("0", navController, DestinationViewModel())
+    val foodViewModel = FoodViewModel("0")
+    FoodItemCheck(foodViewModel, navController,)
 }
 
 @Preview(showBackground = true)
@@ -314,38 +287,3 @@ fun PreviewFoodItemCheck() {
     FoodItemCheckPreview()
 }
 
-
-/*
-@Composable
-fun FoodItemCheckPreview() {
-    val foodData = FoodData(
-        id = 1,
-        name = R.string.name1,
-        rating = 4,
-        description = R.string.description1
-    )
-    val navController = rememberNavController()
-
-    FoodItemCheck(
-        data = foodData,
-        navController = navController
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewFoodItemCheck() {
-    MaterialTheme {
-        FoodItemCheckPreview()
-    }
-}
-*/
-/*
-@Preview(showBackground = true)
-@Composable
-fun FoodItemCheckPreview() {
-
-    FoodItemCheck(data = FoodData(1L, desc = "This is a test", name = "Rice Pudding"))
-
-}
-*/
