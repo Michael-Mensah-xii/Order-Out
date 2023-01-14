@@ -18,7 +18,7 @@ class CardNumberParser(
 
     /**
      * create a block using xxxx format
-     * depending of emptyChar value
+     * depending on emptyChar value
      */
     private fun initEmptyBlock() = "".padEnd(BLOCK_SIZE, emptyChar)
 
