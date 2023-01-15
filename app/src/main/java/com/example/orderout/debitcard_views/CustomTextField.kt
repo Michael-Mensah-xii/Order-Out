@@ -12,7 +12,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 
 /**
- * Delete icon placed on the right of the field
+ * try to add a delete icon placed in the right end of the field
  * This component is rendered when the value of the input is not blank
  */
 
@@ -25,12 +25,9 @@ fun CustomTextField(
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardType: KeyboardType = KeyboardType.Text,
     nextFocus: FocusRequester? = null,
-    //label: String,
     trailingIcon: @Composable (() -> Unit)? = null
 ) {
-    val focusHolderName = FocusRequester()
-    val focusExpiration = FocusRequester()
-    val focusCVC = FocusRequester()
+
 
     val keyboardOptions = KeyboardOptions(
         keyboardType = keyboardType,
@@ -47,7 +44,6 @@ fun CustomTextField(
                 Text(text = placeholder)
             }
         },
-     //   label = { Text(text = label) },
         trailingIcon = trailingIcon,
         keyboardOptions = keyboardOptions,
         keyboardActions = KeyboardActions(
