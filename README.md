@@ -25,7 +25,8 @@
 
 
 ## App Visual
-https://github.com/Michael-Mensah-xii/Order-Out/assets/95852329/aa12d9c2-f914-4f6e-973a-30f25aa022f9
+https://github.com/Michael-Mensah-xii/Order-Out/assets/95852329/7a51c91f-98c8-406d-b969-c35c186dcba3
+
 
 
 
