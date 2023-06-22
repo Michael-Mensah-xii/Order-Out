@@ -1,18 +1,39 @@
 package com.example.orderout.view
 
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.focus.onFocusEvent
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -21,7 +42,11 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.orderout.R
-import com.example.orderout.debitcard_models.*
+import com.example.orderout.debitcard_models.CreditCardModel
+import com.example.orderout.debitcard_models.CreditCardViewModel
+import com.example.orderout.debitcard_models.FieldType
+import com.example.orderout.debitcard_models.InputTransformation
+import com.example.orderout.debitcard_models.InputValidator
 import com.example.orderout.debitcard_views.CreditCard
 import com.example.orderout.debitcard_views.CustomTextField
 import com.example.orderout.ui.theme.Green
@@ -31,6 +56,10 @@ import com.example.orderout.ui.theme.paleGreen
 @Composable
 fun VisaPaymentDetails(navController: NavController, viewModel: CreditCardViewModel) {
 
+    val focusHolderNum = FocusRequester()
+    val focusExpiration = FocusRequester()
+    val focusCVV = FocusRequester()
+
     Column(
         modifier = Modifier
             .heightIn(119.dp)
@@ -38,7 +67,7 @@ fun VisaPaymentDetails(navController: NavController, viewModel: CreditCardViewMo
             .padding(horizontal = 16.dp)
     )
     {
-        Column() {
+        Column {
             Row(
                 modifier = Modifier
                     .padding(top = 8.dp)
@@ -103,6 +132,8 @@ fun VisaPaymentDetails(navController: NavController, viewModel: CreditCardViewMo
                     viewModel.name = name
                 }
             },
+            nextFocus = focusHolderNum,
+
             modifier = Modifier
                 .onFocusChanged { state ->
                     if (state.isFocused) viewModel.flipped = false
@@ -134,12 +165,16 @@ fun VisaPaymentDetails(navController: NavController, viewModel: CreditCardViewMo
                 viewModel.number =
                     if (viewModel.number.length >= 16) viewModel.number.substring(0..15) else it
 
+                // When value is completed, request focus of next field
+                if (viewModel.number.length >= 16) focusExpiration.requestFocus()
 
             },
+
             modifier = Modifier
                 .onFocusChanged { state ->
                     if (state.isFocused) viewModel.flipped = false
                 }
+                .focusRequester(focusHolderNum)
                 .fillMaxWidth()
                 .border(2.dp, color = GreenMINTalpha, shape = RoundedCornerShape(8.dp))
                 .heightIn(min = 60.dp)
@@ -158,8 +193,9 @@ fun VisaPaymentDetails(navController: NavController, viewModel: CreditCardViewMo
         Spacer(modifier = Modifier.heightIn(24.dp))
 
 
-        Row(modifier = Modifier
-            .fillMaxWidth(),
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             CustomTextField(
@@ -170,13 +206,16 @@ fun VisaPaymentDetails(navController: NavController, viewModel: CreditCardViewMo
                     viewModel.expiration = if (it.length >= 4) it.substring(0..3) else it
 
                     // When value is completed, request focus of next field
-                    // if (viewModel.expiration.length >= 4) focusCVC.requestFocus()
+                    if (viewModel.expiration.length >= 4) focusCVV.requestFocus()
                 },
+                keyboardType = KeyboardType.Number,
+                nextFocus = focusCVV,
 
                 modifier = Modifier
                     .onFocusChanged { state ->
                         if (state.isFocused) viewModel.flipped = false
                     }
+                    .focusRequester(focusExpiration)
                     .border(2.dp, color = GreenMINTalpha, shape = RoundedCornerShape(8.dp))
                     .widthIn(min = 192.dp)
                     .heightIn(min = 60.dp)
@@ -196,6 +235,8 @@ fun VisaPaymentDetails(navController: NavController, viewModel: CreditCardViewMo
                         viewModel.cvc = cvc
                     }
                 },
+                keyboardType = KeyboardType.Number,
+
                 modifier = Modifier
                     .onFocusEvent { state ->
                         if (state.isFocused) viewModel.flipped = true
@@ -266,9 +307,10 @@ fun VisaPaymentDetails(navController: NavController, viewModel: CreditCardViewMo
 
 @Composable
 fun VisaPaymentScreen(navController: NavHostController) {
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .verticalScroll(rememberScrollState())
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
     ) {
         VisaPaymentDetails(navController, viewModel = CreditCardViewModel())
     }
