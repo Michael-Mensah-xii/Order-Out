@@ -25,8 +25,7 @@
 
 
 ## App Visual
-https://user-images.githubusercontent.com/95852329/209736758-975b699b-8aa2-45a0-ab2e-1e43074a480f.mp4
-
+https://github.com/Michael-Mensah-xii/Order-Out/assets/95852329/aa12d9c2-f914-4f6e-973a-30f25aa022f9
 
 
 
