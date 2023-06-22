@@ -241,6 +241,7 @@ fun VisaPaymentDetails(navController: NavController, viewModel: CreditCardViewMo
                     .onFocusEvent { state ->
                         if (state.isFocused) viewModel.flipped = true
                     }
+                    .focusRequester(focusCVV)
                     .border(2.dp, color = GreenMINTalpha, shape = RoundedCornerShape(8.dp))
                     .widthIn(min = 137.dp)
                     .heightIn(min = 60.dp)
