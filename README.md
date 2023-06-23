@@ -9,11 +9,9 @@
 * Jetpack Compose
 
 ## Figma Reference
-<img width="500" alt="fig ref 3" src="https://user-images.githubusercontent.com/95852329/209736141-07612709-3de6-4a6c-806b-4a361ea62707.png">
+![image](https://github.com/Michael-Mensah-xii/Order-Out/assets/95852329/c1840941-bd3e-47b2-912e-7b999c70551e)
 
-<img width="500" alt="fig ref 2" src="https://user-images.githubusercontent.com/95852329/209736152-ee22b1f9-d8f8-4c9c-b2ea-85e889e72d1f.png">
 
-<img width="500" alt="fig ref 1" src="https://user-images.githubusercontent.com/95852329/209736155-758947f5-d15e-4839-adbe-8fe5163e95fb.png">
 
 
 ## Screenshots
