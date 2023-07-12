@@ -4,7 +4,14 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
@@ -22,8 +29,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.example.orderout.R
 import com.example.orderout.model.FoodData
 import com.example.orderout.model.FoodDataSource
@@ -31,19 +36,17 @@ import com.example.orderout.ui.theme.RatingYellow
 
 @ExperimentalFoundationApi
 @Composable
-fun HomeScreen(navController: NavHostController) {
+fun HomeScreen(onItemClick: (item: Int) -> Unit) {
     val destinations = FoodDataSource().loadData()
-
-
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         contentPadding = PaddingValues(8.dp),
         modifier = Modifier.padding(bottom = 48.dp)
     ) {
-        itemsIndexed(destinations) { index, destination ->
+        itemsIndexed(destinations) { item, destination ->
             Row(Modifier.padding(8.dp)) {
-                ItemLayout(destination, index, navController)
+                ItemLayout(destination, onItemClick = { onItemClick(item) })
             }
         }
     }
@@ -53,8 +56,7 @@ fun HomeScreen(navController: NavHostController) {
 @Composable
 fun ItemLayout(
     destination: FoodData,
-    index: Int,
-    navController: NavHostController,
+    onItemClick: () -> Unit,
 ) {
     Column(
         verticalArrangement = Arrangement.Center,
@@ -62,9 +64,7 @@ fun ItemLayout(
             .background(MaterialTheme.colors.background)
             .widthIn(185.dp)
             .clip(RoundedCornerShape(8.dp))
-            .clickable {
-                navController.navigate("details/$index")
-            }
+            .clickable { onItemClick() }
     ) {
         Image(
             painter = painterResource(destination.id),
@@ -99,7 +99,8 @@ fun ItemLayout(
 fun Rating(
     rating: Int, modifier: Modifier = Modifier,
 ) {
-    Row(modifier.padding(horizontal = 16.dp)
+    Row(
+        modifier.padding(horizontal = 16.dp)
     ) {
         for (i in 1..5) {
             if (i <= rating) {
@@ -123,7 +124,6 @@ fun Rating(
 @Preview
 @Composable
 fun ItemLayoutPreview() {
-    val navController = rememberNavController()
     val destination = FoodData(
         id = R.drawable.image1,
         name = R.string.name1,
@@ -131,7 +131,7 @@ fun ItemLayoutPreview() {
         rating = 4,
         price = 30.00
     )
-    ItemLayout(destination, 0, navController)
+    ItemLayout(destination,  onItemClick = {})
 }
 
 

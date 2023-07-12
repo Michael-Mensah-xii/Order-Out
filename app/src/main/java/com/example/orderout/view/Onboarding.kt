@@ -3,7 +3,11 @@ package com.example.orderout.view
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -15,10 +19,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.orderout.R
-import com.example.orderout.ui.theme.*
+import com.example.orderout.ui.theme.Green
+import com.example.orderout.ui.theme.Page1
+import com.example.orderout.ui.theme.Page2
+import com.example.orderout.ui.theme.Page3
+import com.example.orderout.ui.theme.onboardPages
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
@@ -27,7 +34,7 @@ import com.google.accompanist.pager.rememberPagerState
 @ExperimentalAnimationApi
 @ExperimentalPagerApi
 @Composable
-fun OnboardingUI(navController: NavController) {
+fun OnboardingUI(openHomeScreen: () -> Unit) {
     val pagerState = rememberPagerState()
     val currentPage = pagerState.currentPage
     val currentImage = onboardPages[currentPage].image
@@ -71,9 +78,7 @@ fun OnboardingUI(navController: NavController) {
                     .weight(1f)
                     .padding(horizontal = 16.dp),
                 onClick = {
-                    navController.navigate("home") {
-                        popUpTo(0) { inclusive = true }
-                    }
+                    openHomeScreen()
                 },
                 colors = ButtonDefaults.outlinedButtonColors(
                     Green,
@@ -90,6 +95,6 @@ fun OnboardingUI(navController: NavController) {
 @Composable
 fun Ncncncn() {
     val navController = rememberNavController()
-    OnboardingUI(navController)
+    OnboardingUI(openHomeScreen = {})
 
 }

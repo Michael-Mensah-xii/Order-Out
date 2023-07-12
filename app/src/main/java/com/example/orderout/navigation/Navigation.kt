@@ -49,19 +49,33 @@ fun OrderOutApp() {
         }
 
     ) {
-        NavHost(navController = navController, startDestination = Screen.onBoardingPage.route) {
+        NavHost(navController = navController, startDestination = Screen.OnBoardingPage.route) {
 
             //OnBoarding Screen
-            composable(route = Screen.onBoardingPage.route) { OnboardingUI(navController) }
-
+            composable(route = Screen.OnBoardingPage.route) {
+                OnboardingUI(
+                    openHomeScreen = {
+                        navController.navigate("home") {
+                            popUpTo(0) { inclusive = true }
+                        }
+                    })
+            }
 
             //HomeScreen
-            composable(route = Screen.HomeScreen.route) { HomeScreen(navController) }
+            composable(route = Screen.HomeScreen.route) {
+                HomeScreen(onItemClick = { item ->
+                    navController.navigate(Screen.AddToCartScreen.createRouteWithItem(item))
+                })
+            }
 
             //AddToCart Screen
-            composable("details/{listId}") { backStackEntry ->
-                backStackEntry.arguments?.getString("listId")
-                    ?.let { FoodItemCheck(FoodViewModel(it), navController) }
+            composable("details/{index}") { backStackEntry ->
+                backStackEntry.arguments?.getString("index")
+                    ?.let {
+                        FoodItemCheck(FoodViewModel(it), navigateUp = {
+                            navController.navigateUp()
+                        })
+                    }
             }
 
             //Cart Screen
@@ -86,21 +100,19 @@ fun BottomBarAnimation(
     val navBackStackEntry by navController.currentBackStackEntryAsState()
 
     // Control BottomBar
-    when (navBackStackEntry?.destination?.route) {
-        "onBoarding", "pay_select", "cart", "visa_select", "details/{listId}" -> {
-            // Hide BottomBar
-            bottomBarState.value = false
-            // Hide TopBar
-            topBarState.value = false
-        }
-        else -> {
-            // Show BottomBar
-            bottomBarState.value = true
-            // Show TopBar
-            topBarState.value = true
-        }
+    if (navBackStackEntry?.destination?.route != "home") {
+        // Hide BottomBar
+        bottomBarState.value = false
+        // Hide TopBar
+        topBarState.value = false
+    } else {
+        // Show BottomBar
+        bottomBarState.value = true
+        // Show TopBar
+        topBarState.value = true
     }
 }
+
 
 
 

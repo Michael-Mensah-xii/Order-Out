@@ -1,8 +1,24 @@
 package com.example.orderout.view
 
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
@@ -24,8 +40,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.orderout.R
 import com.example.orderout.model.FoodViewModel
 import com.example.orderout.ui.theme.Green
@@ -36,14 +50,16 @@ import com.example.orderout.ui.theme.paleGreen
 @Composable
 fun FoodItemCheck(
     foodViewModel: FoodViewModel,
-    navController: NavController,
+    navigateUp: () -> Unit,
 ) {
 
-    Box(modifier = Modifier
+    Box(
+        modifier = Modifier
     ) {
-        Column(modifier = Modifier
-            .fillMaxHeight()
-            .verticalScroll(rememberScrollState())
+        Column(
+            modifier = Modifier
+                .fillMaxHeight()
+                .verticalScroll(rememberScrollState())
         ) {
             Row(
                 modifier = Modifier
@@ -61,10 +77,8 @@ fun FoodItemCheck(
                         .background(paleGreen)
                         .padding(4.dp)
                         .clickable {
-                            navController.navigate("home") {
-                                popUpTo("home") { inclusive = true }
-                            }
-                        },
+                            navigateUp()
+                                   },
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
@@ -121,7 +135,8 @@ fun FoodItemCheck(
                         .padding(8.dp),
                 ) {
 
-                    Row(horizontalArrangement = Arrangement.spacedBy(16.dp),
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(16.dp),
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier.padding(horizontal = 8.dp)
                     ) {
@@ -159,7 +174,7 @@ fun FoodItemCheck(
                                 .background(GreenMINT)
                                 .padding(4.dp)
                                 .clickable {
-                                 foodViewModel.incrementQuantity()
+                                    foodViewModel.incrementQuantity()
                                 },
                             contentAlignment = Alignment.Center
                         ) {
@@ -178,12 +193,14 @@ fun FoodItemCheck(
             //  Spacer(modifier = Modifier.height(8.dp))
 
             //price and name
-            Box(modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 8.dp)
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp)
             ) {
 
-                Row(verticalAlignment = Alignment.CenterVertically,
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier
                         .padding(horizontal = 16.dp)
@@ -207,18 +224,20 @@ fun FoodItemCheck(
 
             //Ingredients
             Spacer(modifier = Modifier.height(16.dp))
-            Box(modifier = Modifier
-                .padding(top = 16.dp)
-                .fillMaxWidth()
-                .heightIn(398.dp)
-                .clip(RoundedCornerShape(topStart = 40.dp, topEnd = 40.dp))
-                .background(paleGreen)
-            ) {
-                Column(modifier = Modifier
+            Box(
+                modifier = Modifier
+                    .padding(top = 16.dp)
                     .fillMaxWidth()
-                    .heightIn(180.dp)
-                    .padding(vertical = 16.dp)
-                    .padding(horizontal = 16.dp)
+                    .heightIn(398.dp)
+                    .clip(RoundedCornerShape(topStart = 40.dp, topEnd = 40.dp))
+                    .background(paleGreen)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .heightIn(180.dp)
+                        .padding(vertical = 16.dp)
+                        .padding(horizontal = 16.dp)
                 ) {
                     Text(
                         text = stringResource(id = R.string.Ingredients),
@@ -233,17 +252,19 @@ fun FoodItemCheck(
                     Text(
                         text = stringResource(id = foodViewModel.description),
                         modifier = Modifier,
-                        style = TextStyle(fontSize = 18.sp),
+                        // fontWeight = FontWeight(400),
+                        fontSize = 16.sp,
+                        fontStyle = MaterialTheme.typography.body1.fontStyle,
                         overflow = TextOverflow.Clip
                     )
 
                     Spacer(modifier = Modifier.heightIn(48.dp))
                 }
 
-
-                Column(modifier = Modifier
-                    .padding(top = 285.dp)
-                    .padding(horizontal = 16.dp)
+                Column(
+                    modifier = Modifier
+                        .padding(top = 285.dp)
+                        .padding(horizontal = 16.dp)
                 ) {
                     Button(
                         modifier = Modifier
@@ -257,8 +278,7 @@ fun FoodItemCheck(
                             stringResource(R.string.add_to_cart),
                             color = Color.White,
                             fontSize = 14.sp,
-
-                            )
+                        )
                     }
 
                 }
@@ -274,9 +294,8 @@ fun FoodItemCheck(
 
 @Composable
 fun FoodItemCheckPreview() {
-    val navController = rememberNavController()
     val foodViewModel = FoodViewModel("0")
-    FoodItemCheck(foodViewModel, navController,)
+    FoodItemCheck(foodViewModel, navigateUp = {})
 }
 
 @Preview(showBackground = true)
