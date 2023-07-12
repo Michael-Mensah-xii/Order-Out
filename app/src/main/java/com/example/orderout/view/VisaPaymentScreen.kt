@@ -38,9 +38,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.example.orderout.R
 import com.example.orderout.debitcard_models.CreditCardModel
 import com.example.orderout.debitcard_models.CreditCardViewModel
@@ -54,7 +51,7 @@ import com.example.orderout.ui.theme.GreenMINTalpha
 import com.example.orderout.ui.theme.paleGreen
 
 @Composable
-fun VisaPaymentDetails(navController: NavController, viewModel: CreditCardViewModel) {
+fun VisaPaymentDetails(onBackPress: () -> Unit, viewModel: CreditCardViewModel) {
 
     val focusHolderNum = FocusRequester()
     val focusExpiration = FocusRequester()
@@ -85,8 +82,7 @@ fun VisaPaymentDetails(navController: NavController, viewModel: CreditCardViewMo
                     contentAlignment = Alignment.Center
                 ) {
                     IconButton(onClick = {
-                        navController.navigateUp()
-
+                        onBackPress()
                     }) {
                         Icon(
                             modifier =
@@ -307,13 +303,13 @@ fun VisaPaymentDetails(navController: NavController, viewModel: CreditCardViewMo
 
 
 @Composable
-fun VisaPaymentScreen(navController: NavHostController) {
+fun VisaPaymentScreen(onBackPress: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
     ) {
-        VisaPaymentDetails(navController, viewModel = CreditCardViewModel())
+        VisaPaymentDetails(onBackPress, viewModel = CreditCardViewModel())
     }
 
 }
@@ -322,7 +318,6 @@ fun VisaPaymentScreen(navController: NavHostController) {
 @Preview(showBackground = true)
 @Composable
 fun VisaPaymentScreenPreview() {
-    val navController = rememberNavController()
-    VisaPaymentScreen(navController)
+    VisaPaymentScreen(onBackPress = {})
 }
 

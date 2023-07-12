@@ -2,14 +2,33 @@ package com.example.orderout.view
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.paddingFromBaseline
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,9 +42,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.example.orderout.R
 import com.example.orderout.ui.theme.Green
 import com.example.orderout.ui.theme.GreenArmy
@@ -34,10 +50,11 @@ import com.example.orderout.ui.theme.paleGreen
 
 //Create a view that displays total price in a text view
 @Composable
-fun TotalPrice(navController: NavController) {
-    Box(modifier = Modifier
-        .fillMaxWidth()
-        .heightIn(32.dp)
+fun TotalPrice(onBackPress: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(32.dp)
     ) {
         Row(
             modifier = Modifier
@@ -52,14 +69,11 @@ fun TotalPrice(navController: NavController) {
                     .size(35.dp)
                     .clip(RoundedCornerShape(8.dp))
                     .background(paleGreen)
-                    .padding(4.dp)
-                    .clickable { },
+                    .padding(4.dp),
                 contentAlignment = Alignment.Center
             ) {
                 IconButton(onClick = {
-                    navController.navigate("home") {
-                        popUpTo("home") { inclusive = true }
-                    }
+                    onBackPress()
                 }) {
                     Icon(
                         modifier =
@@ -74,10 +88,12 @@ fun TotalPrice(navController: NavController) {
             }
         }
 
-        Row(modifier = Modifier.fillMaxWidth(),
+        Row(
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center
         ) {
-            Text(text = "Cart",
+            Text(
+                text = "Cart",
                 style = TextStyle(fontSize = 24.sp, lineHeight = 14.sp),
                 modifier = Modifier.padding(vertical = 48.dp)
             )
@@ -121,12 +137,13 @@ fun CartElement(
     @StringRes text: Int,
     @StringRes price: Int,
 ) {
-    Box(modifier = Modifier
-        .fillMaxWidth()
-        .heightIn(101.dp)
-        .padding(horizontal = 16.dp)
-        .clip(RoundedCornerShape(8.dp))
-        .background(paleGreen)
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(101.dp)
+            .padding(horizontal = 16.dp)
+            .clip(RoundedCornerShape(8.dp))
+            .background(paleGreen)
     ) {
         Row(
             modifier = Modifier
@@ -143,10 +160,11 @@ fun CartElement(
                 painter = painterResource(id = drawable),
                 contentDescription = "temp",
             )
-            Column(modifier = Modifier
-                .heightIn(69.dp)
-                .padding(start = 16.dp)
-                .align(Alignment.CenterVertically),
+            Column(
+                modifier = Modifier
+                    .heightIn(69.dp)
+                    .padding(start = 16.dp)
+                    .align(Alignment.CenterVertically),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
@@ -184,12 +202,13 @@ fun CartElement(
 
 
 @Composable
-fun CartElementColumn(navController: NavHostController) {
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .verticalScroll(rememberScrollState())
+fun CartElementColumn(openPayments: () -> Unit, onBackPress: () -> Unit) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
     ) {
-        TotalPrice(navController)
+        TotalPrice(onBackPress)
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(16.dp),
             modifier = Modifier
@@ -210,7 +229,7 @@ fun CartElementColumn(navController: NavHostController) {
             }
         )
 
-        ConfirmOrderButton(navController)
+        ConfirmOrderButton(openPayments)
     }
 }
 
@@ -287,10 +306,11 @@ fun CartItemButton() {
 
 //create a button that says confirm order
 @Composable
-fun ConfirmOrderButton(navController: NavController) {
-    Column(modifier = Modifier
-        .padding(bottom = 52.dp)
-        .padding(horizontal = 16.dp)
+fun ConfirmOrderButton(openPayments: () -> Unit) {
+    Column(
+        modifier = Modifier
+            .padding(bottom = 52.dp)
+            .padding(horizontal = 16.dp)
     ) {
         Button(
             modifier = Modifier
@@ -299,9 +319,8 @@ fun ConfirmOrderButton(navController: NavController) {
             shape = RoundedCornerShape(4.dp),
             colors = (ButtonDefaults.buttonColors(Green)),
             onClick = {
-                navController.navigate("pay_select") {
-                    popUpTo("pay_select") { inclusive = true }
-                }
+                openPayments()
+
             }
         ) {
             Text(
@@ -317,11 +336,12 @@ fun ConfirmOrderButton(navController: NavController) {
 
 //Screen
 @Composable
-fun CartScreen(navController: NavHostController) {
-    Column(modifier = Modifier
-        .fillMaxSize()
+fun CartScreen(onBackPress: () -> Unit, openPayments: () -> Unit) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
     ) {
-        CartElementColumn(navController)
+        CartElementColumn(openPayments, onBackPress)
     }
 }
 
@@ -329,22 +349,22 @@ fun CartScreen(navController: NavHostController) {
 @Preview(showBackground = true)
 @Composable
 fun TotalPricePreview() {
-    val navController = rememberNavController()
 
-    TotalPrice(navController)
+    TotalPrice(onBackPress = {})
 }
 
 @Preview(showBackground = true)
 @Composable
 fun CartElementPreview() {
-    CartElement(drawable = R.drawable.add_to_cart_1,
+    CartElement(
+        drawable = R.drawable.add_to_cart_1,
         text = R.string.temp_item_string,
-        price = R.string.temp_price)
+        price = R.string.temp_price
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun CartScreenPreview() {
-    val navController = rememberNavController()
-    CartScreen(navController)
+    CartScreen(openPayments = {}, onBackPress = {})
 }

@@ -79,13 +79,32 @@ fun OrderOutApp() {
             }
 
             //Cart Screen
-            composable(route = Screen.CartScreen.route) { CartScreen(navController) }
+            composable(route = Screen.CartScreen.route) {
+                CartScreen(onBackPress = { navController.navigateUp() },
+                    openPayments = {
+                        navController.navigate("pay_select") {
+                            popUpTo("pay_select") { inclusive = true }
+                        }
+                    })
+            }
 
             //PaymentList Screen
-            composable(route = Screen.PaymentList.route) { PaymentList(navController) }
+            composable(route = Screen.PaymentList.route) {
+                PaymentList(onBackPress = {
+                    navController.navigateUp()
+                }, onClick = {
+                    navController.navigate("visa_select") {
+                        popUpTo("visa_select") { inclusive = true }
+                    }
+                })
+            }
 
             //VisaPaymentScreen
-            composable(route = Screen.VisaPaymentScreen.route) { VisaPaymentScreen(navController) }
+            composable(route = Screen.VisaPaymentScreen.route) {
+                VisaPaymentScreen(onBackPress = {
+                    navController.navigateUp()
+                })
+            }
         }
     }
 }

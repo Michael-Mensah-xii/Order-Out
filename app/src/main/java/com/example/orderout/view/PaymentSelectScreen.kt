@@ -4,7 +4,16 @@ import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,8 +32,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.orderout.R
 import com.example.orderout.ui.theme.Green
 import com.example.orderout.ui.theme.GreenMINTalpha
@@ -69,10 +76,11 @@ fun PaymentSelect(
 
 @Composable
 fun PaymentList(
-    navController: NavController,
+    onClick: () -> Unit,
+    onBackPress: () -> Unit,
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
-        ChoosePayment(navController)
+        ChoosePayment(onBackPress)
         Text(
             text = "Choose your payment method",
             modifier = Modifier
@@ -91,12 +99,9 @@ fun PaymentList(
                     PaymentSelect(
                         drawable = item.drawable,
                         onClick = {
+
                             if (item.drawable == R.drawable.visa) {
-                                navController.navigate("visa_select") {
-                                    popUpTo("visa_select") { inclusive = true }
-                                }
-                            } else {
-                                null
+                                onClick()
                             }
                         }
                     )
@@ -122,10 +127,11 @@ val paymentdata = listOf(
 
 
 @Composable
-fun ChoosePayment(navController: NavController) {
-    Box(modifier = Modifier
-        .fillMaxWidth()
-        .heightIn(32.dp)
+fun ChoosePayment(onBackPress: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(32.dp)
     ) {
         Row(
             modifier = Modifier
@@ -145,7 +151,7 @@ fun ChoosePayment(navController: NavController) {
                 contentAlignment = Alignment.Center
             ) {
                 IconButton(onClick = {
-                    navController.navigateUp()
+                    onBackPress()
                 }) {
                     Icon(
                         modifier =
@@ -160,12 +166,14 @@ fun ChoosePayment(navController: NavController) {
             }
         }
 
-        Row(modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp),
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
             horizontalArrangement = Arrangement.Center
         ) {
-            Text(text = "Choose Payment",
+            Text(
+                text = "Choose Payment",
                 style = TextStyle(fontSize = 24.sp, lineHeight = 14.sp),
                 modifier = Modifier.padding(vertical = 62.dp)
             )
@@ -206,14 +214,12 @@ fun ChoosePayment(navController: NavController) {
 @Preview(showBackground = true)
 @Composable
 fun ChoosePaymentPreview() {
-    val navController = rememberNavController()
-    ChoosePayment(navController)
+    ChoosePayment(onBackPress = {})
 }
 
 @Preview(showBackground = true)
 @Composable
 fun PaymentListPreview() {
-    val navController = rememberNavController()
-    PaymentList(navController)
+    PaymentList(onClick = {}, onBackPress = {})
 }
 
