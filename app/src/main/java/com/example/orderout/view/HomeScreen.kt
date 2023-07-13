@@ -43,6 +43,7 @@ fun HomeScreen(onItemClick: (item: Int) -> Unit) {
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 24.dp),
         modifier = Modifier
             .fillMaxSize()
+            .padding(bottom = 40.dp)
     ) {
         itemsIndexed(destinations) { item, destination ->
             ItemLayout(destination, onItemClick = { onItemClick(item) })
