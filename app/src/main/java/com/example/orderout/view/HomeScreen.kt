@@ -1,22 +1,20 @@
 package com.example.orderout.view
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
@@ -34,20 +32,20 @@ import com.example.orderout.model.FoodData
 import com.example.orderout.model.FoodDataSource
 import com.example.orderout.ui.theme.RatingYellow
 
-@ExperimentalFoundationApi
 @Composable
 fun HomeScreen(onItemClick: (item: Int) -> Unit) {
     val destinations = FoodDataSource().loadData()
 
     LazyVerticalGrid(
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
         columns = GridCells.Fixed(2),
-        contentPadding = PaddingValues(8.dp),
-        modifier = Modifier.padding(bottom = 48.dp)
+        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 24.dp),
+        modifier = Modifier
+            .fillMaxSize()
     ) {
         itemsIndexed(destinations) { item, destination ->
-            Row(Modifier.padding(8.dp)) {
-                ItemLayout(destination, onItemClick = { onItemClick(item) })
-            }
+            ItemLayout(destination, onItemClick = { onItemClick(item) })
         }
     }
 }
@@ -58,22 +56,15 @@ fun ItemLayout(
     destination: FoodData,
     onItemClick: () -> Unit,
 ) {
-    Column(
-        verticalArrangement = Arrangement.Center,
-        modifier = Modifier
-            .background(MaterialTheme.colors.background)
-            .widthIn(185.dp)
-            .clip(RoundedCornerShape(8.dp))
-            .clickable { onItemClick() }
-    ) {
+    Column(modifier = Modifier.padding(start = 8.dp)) {
         Image(
             painter = painterResource(destination.id),
             contentDescription = stringResource(destination.name),
             modifier = Modifier
-                .widthIn(185.dp)
-                .heightIn(140.dp)
+                .clickable { onItemClick() }
+                .size(height = 170.dp, width = 170.dp)
                 .clip(RoundedCornerShape(8.dp)),
-            contentScale = ContentScale.Fit,
+            contentScale = ContentScale.Crop,
         )
         Spacer(modifier = Modifier.heightIn(10.dp))
 
@@ -81,14 +72,12 @@ fun ItemLayout(
             text = stringResource(destination.name),
             color = Color.Black,
             fontSize = 14.sp,
-            modifier = Modifier.padding(horizontal = 16.dp),
         )
         Rating(rating = destination.rating)
         Text(
             text = String.format("GHS %.2f", destination.price),
             color = Color.Black,
             fontSize = 10.sp,
-            modifier = Modifier.padding(horizontal = 16.dp)
         )
     }
 }
@@ -97,14 +86,11 @@ fun ItemLayout(
 //create rating system
 @Composable
 fun Rating(
-    rating: Int, modifier: Modifier = Modifier,
+    rating: Int,
 ) {
-    Row(
-        modifier.padding(horizontal = 16.dp)
-    ) {
+    Row {
         for (i in 1..5) {
             if (i <= rating) {
-                //  Image(painter = painterResource(id = R.drawable.ic_star))
                 Icon(
                     painter = painterResource(id = R.drawable.ic_star),
                     tint = RatingYellow,
@@ -131,7 +117,7 @@ fun ItemLayoutPreview() {
         rating = 4,
         price = 30.00
     )
-    ItemLayout(destination,  onItemClick = {})
+    ItemLayout(destination, onItemClick = {})
 }
 
 
@@ -141,7 +127,11 @@ fun RatingPreview() {
     Rating(rating = 1)
 }
 
-
+@Preview(showBackground = true)
+@Composable
+fun HomeScreenPreview() {
+    HomeScreen(onItemClick = {})
+}
 
 
 
