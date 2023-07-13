@@ -69,8 +69,8 @@ fun OrderOutApp() {
             }
 
             //AddToCart Screen
-            composable("details/{index}") { backStackEntry ->
-                backStackEntry.arguments?.getString("index")
+            composable(route = Screen.AddToCartScreen.route ) { backStackEntry ->
+                backStackEntry.arguments?.getString("item")
                     ?.let {
                         FoodItemCheck(FoodViewModel(it), navigateUp = {
                             navController.navigateUp()
